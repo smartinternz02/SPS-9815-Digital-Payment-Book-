@@ -1,0 +1,65 @@
+{% extends "layouts.html" %}
+{% block content %}
+
+<div class="search-table mx-4 ">
+    {% for mess in get_flashed_messages()  %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" class="fade close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        {{mess}}
+        </div>
+      {% endfor %}
+{% if message  %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" class="fade close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        {{message}}
+        </div>
+      {% endif %}
+<!--    <input type="text" class="search rounded mt-3 p-2" placeholder="Search..">-->
+<!--  <input type="text" class="st-default-search-input" style="width: 300px; height: 150px" />-->
+      <button class="btn btn-secondary" style=" background-color:#1B62D3;" type="button">
+        <i class="fa fa-search"></i>
+      </button>
+
+</div>
+<!--<div class="text-right mr-4">-->
+<!--    </div>-->
+<br>
+    <table class="table table-bordered table-striped ">
+      <thead>
+        <tr>
+        <th scope="col">Customer Id</th>
+         <th scope="col">First Name</th>
+         <th scope="col">Last Name</th>
+         <th scope="col">Email</th>
+
+         <th scope="col">Added On</th>
+         <th scope="col">Added On</th>
+
+        </tr>
+      </thead>
+
+  <tbody>
+    {% for customer in view_customers%}
+     <tr>
+     <td>{{ customer.id }}</td>
+     <td>{{ customer.firstname }}</td>
+     <td>{{ customer.lastname }}</td>
+      <td>{{ customer.email }}</td>
+      <td>{{ customer.created_at}}</td>
+     <td><a href="/addpayment/{{customer.id}}"><button class="btn btn-primary btn-sm">Create Bill</button></a></td>
+    </tr>
+
+
+
+   {% endfor %}
+
+  </tbody>
+</table>
+
+
+
+{% endblock %}

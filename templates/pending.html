@@ -1,0 +1,70 @@
+{% extends "layouts.html" %}
+{% block content %}
+
+<div class="search-table mx-4 ">
+    {% for mess in get_flashed_messages()  %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" class="fade close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        {{mess}}
+        </div>
+      {% endfor %}
+{% if message  %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" class="fade close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        {{message}}
+        </div>
+      {% endif %}
+<!--    <input type="text" class="search rounded mt-3 p-2" placeholder="Search..">-->
+<!--  <input type="text" class="st-default-search-input" style="width: 300px; height: 150px" />-->
+      <button class="btn btn-secondary" style=" background-color:#1B62D3;" type="button">
+        <i class="fa fa-search"></i>
+      </button>
+
+</div>
+<!--<div class="text-right mr-4">-->
+<!--    </div>-->
+<br>
+    <table class="table table-bordered table-striped ">
+      <thead>
+        <tr>
+        <th scope="col">Payment Id</th>
+                          <th scope="col">Product Name</th>
+                          <th scope="col">Total Amount</th>
+                          <th scope="col">Paid Amount</th>
+                          <th scope="col">pending Amount</th>
+
+
+                          <th scope="col">Created On</th>
+                          <th scope="col">Action</th>
+
+        </tr>
+      </thead>
+
+  <tbody>
+    {% for payment in pending%}
+                        <tr>
+     <td>{{ payment.id }}</td>
+     <td>{{ payment.product }}</td>
+     <td>{{ payment.total_amount }}</td>
+      <td>{{ payment.paid_amount }}</td>
+     <td>{{ payment.pending_amount }}</td>
+     <td>{{ payment.created_at}}</td>
+       <td>
+       <a href="/close/{{payment.user_id}}"><button class="btn btn-warning btn-sm">Close Payment</button></a>
+       </td>
+</tr>
+
+
+
+   {% endfor %}
+
+  </tbody>
+</table>
+
+
+
+{% endblock %}

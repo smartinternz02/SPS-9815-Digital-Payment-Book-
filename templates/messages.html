@@ -1,0 +1,31 @@
+{% extends "userlayouts.html" %}
+{% block content %}
+
+<div class="container">
+        <div class="row centered-form">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4 offset-lg-3 div-wrapper d-block justify-content-center align-items-center">
+        	<div class="panel panel-default">
+			 			<div class="panel-body">
+							<form role="form" method="POST">
+								{% for mess in get_flashed_messages()  %}
+								  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close" class="fade close">
+									  <span aria-hidden="true">&times;</span>
+									</button>
+									{{mess}}
+									</div>
+								  {% endfor %}
+                                {{ form.hidden_tag() }}
+
+							<div class="form-group">
+                            {{ form.messages(class="form-control input-sm text-center", placeholder="Type your issue here (max length=200)") }}<br>
+                            </div>
+                                {{ form.submit(class="btn btn-info btn-block") }}
+			    		</form>
+			    	</div>
+	    		</div>
+    		</div>
+    	</div>
+    </div>
+{% endblock %}
+<!--<div class="col-10 offset-1 col-lg-8 offset-lg-2 div-wrapper d-flex justify-content-center align-items-center">-->
